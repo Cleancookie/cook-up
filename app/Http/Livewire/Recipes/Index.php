@@ -4,18 +4,16 @@ namespace App\Http\Livewire\Recipes;
 
 use App\Models\Recipe;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $recipes;
-
-    public function mount()
-    {
-        $this->recipes = Recipe::all();
-    }
+    use WithPagination;
 
     public function render()
     {
-        return view('livewire.recipes.index');
+        return view('livewire.recipes.index', [
+            'recipes' => Recipe::paginate(),
+        ]);
     }
 }
