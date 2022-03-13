@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Laravel\Jetstream\InertiaManager;
 
 class RecipesController extends Controller
 {
@@ -39,9 +40,11 @@ class RecipesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Recipe $recipe)
     {
-        //
+        return view('recipes.show', [
+            'recipe' => $recipe,
+        ]);
     }
 
     /**

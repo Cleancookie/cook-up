@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', static fn () => view('welcome'));
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/dashboard', static fn () => view('dashboard') )->name('dashboard');
+
+    Route::get('/recipes', [\App\Http\Controllers\RecipesController::class, 'index'])->name('recipes.index');
+    Route::get('/recipes/{recipe}', [\App\Http\Controllers\RecipesController::class, 'show'])->name('recipes.show');
 });
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::get('/recipes', [\App\Http\Controllers\RecipesController::class, 'index'])->name('recipes.index');
