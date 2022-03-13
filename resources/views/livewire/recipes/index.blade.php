@@ -1,6 +1,4 @@
 <div>
-    <h1 class="text-3xl mb-4">Recipes 🍱</h1>
-
     <div wire:loading.class="opacity-0" wire:loading.class.remove="opacity-100" class="transition-all grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3">
         @foreach($recipes as $recipe)
             <a href="{{ route('recipes.show', $recipe) }}" class="hover:shadow-md transition">
