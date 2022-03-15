@@ -30,7 +30,7 @@ class ImportGousto
                         'source' => Recipe::SOURCE_GOUSTO,
                         'source_id' => $recipe->gousto_id,
                     ];
-                })->toArray(), 'source_id');
+                })->toArray(), ['source', 'source_id']);
             })
         ;
 

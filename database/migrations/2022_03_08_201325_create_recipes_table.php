@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('source_id')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->unique(['source', 'source_id']);
         });
     }
 
