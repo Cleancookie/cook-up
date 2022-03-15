@@ -18,17 +18,21 @@ class ImportGousto
 
     public function handle()
     {
-        $file = Storage::disk('local')->get('recipes/gousto.json');
-        $recipes = collect(json_decode($file));
+        $recipeFiles = Storage::allFiles('recipes');
+        $recipes = collect($recipeFiles)
+            ->map(fn ($filePath) => Storage::get($filePath))
+            ->map(fn ($file) => json_decode($file))
+            ->map(function ($recipe) {
+                return [
+                    'name' => $recipe->title,
+                    'description' => $recipe->description,
+                    'source' => Recipe::SOURCE_GOUSTO,
+                    'source_id' => $recipe->gousto_id,
+                ];
+            })
+        ;
 
-        $recipes->map(function ($recipe) {
-            return Recipe::make([
-                'name' => $recipe->title,
-                'description' => $recipe->description,
-                'source' => Recipe::SOURCE_GOUSTO,
-                'source_id' => $recipe->gousto_id,
-            ])->save();
-        });
+        Recipe::query()->upsert($recipes->toArray(), 'source_id');
     }
 
     public function asCommand(Command $command): void
