@@ -34,16 +34,10 @@ class RecipesController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Recipe $recipe)
     {
         return view('recipes.show', [
-            'recipe' => $recipe,
+            'recipe' => $recipe->loadMissing(['tags', 'ingredients']),
         ]);
     }
 

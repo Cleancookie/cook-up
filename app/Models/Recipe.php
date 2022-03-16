@@ -12,4 +12,14 @@ class Recipe extends Model
     public const SOURCE_GOUSTO = 1;
 
     public $guarded = []; // todo: explicitly choose fillable instead
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function ingredients()
+    {
+        return $this->belongsToMany(Ingredient::class, 'recipe_ingredient');
+    }
 }

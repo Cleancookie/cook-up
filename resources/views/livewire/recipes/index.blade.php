@@ -8,8 +8,9 @@
                 <div class="bg-white rounded-b p-4">
                     <h2 class="text-xl text-gray-700 inline-flex">{{ $recipe->name }}</h2> <span class="text-sm text-gray-300"> #{{ $recipe->id }}</span>
                     <ul class="flex flex-wrap">
-                        <li class="text-sm bg-green-200 rounded-full px-2 mr-2">Some tag 🥕</li>
-                        <li class="text-sm bg-green-200 rounded-full px-2 mr-2">Another tag 🍰</li>
+                        @foreach($recipe->tags as $tag)
+                        <li class="text-sm bg-green-200 rounded-full px-2 mr-2">{{ $tag->name }}</li>
+                        @endforeach
                     </ul>
                 </div>
             </a>

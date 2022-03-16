@@ -13,7 +13,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.recipes.index', [
-            'recipes' => Recipe::paginate(),
+            'recipes' => Recipe::with('tags')->paginate(),
         ]);
     }
 }
