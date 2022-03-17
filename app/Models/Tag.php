@@ -10,4 +10,9 @@ class Tag extends Model
     use HasFactory;
 
     public $guarded = [];
+
+    public function recipes()
+    {
+        return $this->belongsToMany(Recipe::class, 'recipe_ingredient');
+    }
 }
