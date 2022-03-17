@@ -29,13 +29,12 @@ class ImportGousto
         $recipes = $inputs
             ->map(function ($input) {
                 $recipe = Recipe::query()
-                    ->where('source_id', $input->gousto_id)
-                    ->where('source', Recipe::SOURCE_GOUSTO)
                     ->firstOrCreate([
-                        'name' => $input->title,
-                        'description' => $input->description,
                         'source' => Recipe::SOURCE_GOUSTO,
                         'source_id' => $input->gousto_id,
+                    ], [
+                        'name' => $input->title,
+                        'description' => $input->description,
                     ]);
                 return ['recipe' => $recipe, 'raw' => $input];
             })
@@ -43,9 +42,7 @@ class ImportGousto
                 $tags = collect([...collect($input['raw']?->categories)->pluck('title'), $input['raw']?->cuisine?->title])
                     ->filter()->unique()
                     ->map(function($tag) {
-                        return Tag::query()
-                            ->where('name', $tag)
-                            ->firstOrCreate(['name' => $tag]);
+                        return Tag::firstOrCreate(['name' => $tag]);
                     });
 
                 $input['recipe']->tags()->sync($tags->pluck('id'));
@@ -54,9 +51,7 @@ class ImportGousto
             })
             ->map(function ($input) {
                 $ingredients = collect($input['raw']?->ingredients)->map(function ($ingredient) {
-                    return Ingredient::query()
-                        ->where('name', $ingredient->name)
-                        ->firstOrCreate(['name' => $ingredient->name]);
+                    return Ingredient::firstOrCreate(['name' => $ingredient->name]);
                 });
 
                 $input['recipe']->ingredients()->sync($ingredients->pluck('id'));
