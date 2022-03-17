@@ -22,4 +22,9 @@ class Recipe extends Model
     {
         return $this->belongsToMany(Ingredient::class, 'recipe_ingredient');
     }
+
+    public function shoppingLists()
+    {
+        return $this->belongsToMany('shoppingLists');
+    }
 }
