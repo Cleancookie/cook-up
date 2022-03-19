@@ -101,6 +101,10 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
 
+            <x-jet-responsive-nav-link href="{{ route('recipes.index') }}" :active="request()->routeIs('recipes.index')">
+                {{ __('app.recipes') }}
+            </x-jet-responsive-nav-link>
+
             <x-jet-responsive-nav-link href="{{ route('baskets.index') }}" :active="request()->routeIs('baskets.index')">
                 <livewire:nav-basket />
             </x-jet-responsive-nav-link>
