@@ -1,5 +1,7 @@
-<a href="{{ route('baskets.index') }}">
+<div>
     @if (!empty($basket))
-        BasketWire ({{ $basket->recipes->count() }})
+        Basket ({{ $basket->recipes->count() }})
+    @else
+        Your basket is empty
     @endif
-</a>
+</div>
