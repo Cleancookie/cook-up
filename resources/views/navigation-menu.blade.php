@@ -19,12 +19,15 @@
                     <x-jet-nav-link href="{{ route('recipes.index') }}" :active="request()->routeIs('recipes.index')">
                         {{ __('app.recipes') }}
                     </x-jet-nav-link>
+
                 </div>
             </div>
 
 
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <livewire:nav-basket />
+            <div class="hidden sm:flex sm:items-center sm:ml-6 h-16">
+                <x-jet-nav-link href="{{ route('baskets.index') }}" :active="request()->routeIs('baskets.index')" class="h-full">
+                    <livewire:nav-basket />
+                </x-jet-nav-link>
 
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
@@ -96,6 +99,10 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('baskets.index') }}" :active="request()->routeIs('baskets.index')">
+                <livewire:nav-basket />
             </x-jet-responsive-nav-link>
         </div>
 
