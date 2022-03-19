@@ -9,6 +9,8 @@ class Basket extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function recipes()
     {
         return $this->belongsToMany(Recipe::class);

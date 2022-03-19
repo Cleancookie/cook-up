@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 0; $i < 50; $i++) {
             \App\Models\Recipe::factory()
-                ->hasAttached($tags->random(2))
-                ->hasAttached($ingredients->random(10))
+                ->hasAttached($tags->random(random_int(1, 3)))
+                ->hasAttached($ingredients->random(random_int(5, 12)))
                 ->create();
         }
 //        ImportGousto::make()->run();

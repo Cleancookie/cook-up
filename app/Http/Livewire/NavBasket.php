@@ -8,15 +8,22 @@ use function view;
 
 class NavBasket extends Component
 {
-    public Basket $basket;
+    public ?Basket $basket;
+
+    protected $listeners = ['basket-update' => 'loadBasket'];
 
     public function mount()
     {
-        $this->basket = auth()->user()?->baskets()->orderByDesc('created_at')->first();
+        $this->loadBasket();
     }
 
     public function render()
     {
         return view('livewire.nav-basket');
+    }
+
+    public function loadBasket()
+    {
+        $this->basket = auth()->user()?->basket;
     }
 }
