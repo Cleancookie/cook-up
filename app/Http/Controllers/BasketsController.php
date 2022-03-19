@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ShoppingList;
+use App\Models\Basket;
 use Illuminate\Http\Request;
 
-class ShoppingListsController extends Controller
+class BasketsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,10 @@ class ShoppingListsController extends Controller
      */
     public function index()
     {
-        return view('shopping-list.show', [
-            'shopping_list' => $shoppingList ?? []
+        $basket = auth()->user()->basket;
+
+        return view('baskets.index', [
+            'basket' => $basket ?? null
         ]);
     }
 
@@ -40,7 +42,7 @@ class ShoppingListsController extends Controller
         //
     }
 
-    public function show(ShoppingList $shoppingList)
+    public function show(Basket $shoppingList)
     {
         //
     }

@@ -18,7 +18,7 @@ Route::get('/', static fn () => view('welcome'));
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', static fn () => view('dashboard') )->name('dashboard');
 
-    Route::get('/shopping-list', [\App\Http\Controllers\ShoppingListsController::class, 'index'])->name('shopping-list.index');
+    Route::get('/basket', [\App\Http\Controllers\BasketsController::class, 'index'])->name('baskets.index');
 
     Route::get('/recipes', [\App\Http\Controllers\RecipesController::class, 'index'])->name('recipes.index');
     Route::get('/recipes/{recipe}', [\App\Http\Controllers\RecipesController::class, 'show'])->name('recipes.show');

@@ -58,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function baskets()
+    {
+        return $this->hasMany(Basket::class, 'owned_by');
+    }
+
+    public function basket()
+    {
+        return $this->hasOne(Basket::class, 'owned_by')->orderByDesc('created_at')->limit(1);
+    }
 }

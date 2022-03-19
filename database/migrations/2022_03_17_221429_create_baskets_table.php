@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shopping_lists', function (Blueprint $table) {
+        Schema::create('baskets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('owned_by');
-            $table->foreignId('owned_by')->references('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->unsignedBigInteger('owned_by')->index();
+            $table->foreign('owned_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
