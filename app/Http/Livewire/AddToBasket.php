@@ -19,6 +19,6 @@ class AddToBasket extends Component
     {
         \App\Actions\AddToBasket::run($recipe);
 
-        $this->emit('basket-update');
+        $this->emit(Basket::BASKET_UPDATED_EVENT);
     }
 }

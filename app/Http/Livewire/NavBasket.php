@@ -10,7 +10,9 @@ class NavBasket extends Component
 {
     public ?Basket $basket;
 
-    protected $listeners = ['basket-update' => 'loadBasket'];
+    protected $listeners = [
+        Basket::BASKET_UPDATED_EVENT => 'loadBasket'
+    ];
 
     public function mount()
     {
